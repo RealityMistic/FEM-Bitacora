@@ -6,35 +6,29 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Book {
-
+    @SerializedName("title")
+    @Expose
     private String title;
+    @SerializedName("author")
+    @Expose
     private String author;
-    private String content;
+    @SerializedName("publisher")
+    @Expose
     private String publisher;
-    private String date;
+    @SerializedName("pages")
+    @Expose
     private String pages;
-    private String languages;
+    @SerializedName("language")
+    @Expose
+    private String language;
 
-    public Book(String title, String author, String content, String publisher,
-                String date, String pages, String languages) {
+    public Book(String title, String author, String publisher,
+                String pages, String language) {
         this.title = title;
         this.author = author;
-        this.content = content;
         this.publisher = publisher;
-        this.date = date;
         this.pages = pages;
-        this.languages = languages;
-    }
-    @SerializedName("results")
-    @Expose
-    private List<Result> results = null;
-
-    public List<Result> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Result> results) {
-        this.results = results;
+        this.language = language;
     }
 
     public String getTitle() {
@@ -53,28 +47,12 @@ public class Book {
         this.author = author;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getPublisher() {
         return publisher;
     }
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getPages() {
@@ -84,13 +62,12 @@ public class Book {
     public void setPages(String pages) {
         this.pages = pages;
     }
-
-    public String getLanguages() {
-        return languages;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setLanguages(String languages) {
-        this.languages = languages;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
 
