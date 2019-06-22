@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "66777909983",
+    "firebase_url": "https://fem-bitacora.firebaseio.com",
+    "project_id": "fem-bitacora",
+    "storage_bucket": "fem-bitacora.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66777909983:android:d97b683ce9093379",
+        "android_client_info": {
+          "package_name": "es.upm.miw.fem.fembitacora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66777909983-6vujebmidei1kuc29mb9im12b3lfhpjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.upm.miw.fem.fembitacora",
+            "certificate_hash": "abf7e2427c6d51714536d4cc5fd469aeb149d01a"
+          }
+        },
+        {
+          "client_id": "66777909983-j2naer6rj2a1s04bhujlslrscf6mhr71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1o57CTDA7g26SGblZnF33ZnYUbYKJxDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66777909983-j2naer6rj2a1s04bhujlslrscf6mhr71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

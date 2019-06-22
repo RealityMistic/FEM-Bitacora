@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#BABADA"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleAnonymous"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="300dp"
+        android:layout_height="90dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        android:text="@string/label_emailpassword"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/buttonSignIn"
+        android:layout_width="@dimen/field_width_standard"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fieldEmail"
+        android:layout_alignStart="@+id/titleAnonymous"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/signed_in" />
+
+    <Button
+        android:id="@+id/buttonAnonymousSignOut"
+        android:layout_width="@dimen/field_width_standard"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonSignIn"
+        android:enabled="false"
+        android:text="@string/signed_out"
+        android:layout_toEndOf="@+id/buttonSignIn" />
+
+    <EditText
+        android:id="@+id/fieldEmail"
+        android:layout_width="@dimen/field_width_standard"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleLinking"
+        android:layout_alignStart="@+id/titleAnonymous"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:hint="@string/hint_email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress" />
+    <TextView
+        android:id="@+id/titleLinking"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statusEmail"
+        android:layout_alignStart="@+id/titleAnonymous"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/account_linking" />
+    <TextView
+        android:id="@+id/statusEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statusId"
+        android:layout_marginBottom="8dp"
+        android:textStyle="bold"
+        tools:text="Email: none" />
+    <TextView
+        android:id="@+id/statusId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleAnonymous"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/signed_out"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/fieldPassword"
+        android:layout_width="@dimen/field_width_standard"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/fieldEmail"
+        android:layout_toEndOf="@+id/fieldEmail"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:importantForAutofill="no" />
+
+    <Switch
+        android:id="@+id/statusSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/statusId"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:checked="false"
+        android:text="@string/status_logged" />
+        <Button
+            android:id="@+id/btnIdGet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/IdTituloApp"
+            android:layout_alignStart="@+id/IdTituloApp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="18dp"
+            android:onClick="getBookApi"
+            android:text="@string/btnGetApiContent">
+        </Button>
+    <ListView
+        android:id="@+id/lvBookList"
+        android:layout_width="match_parent"
+        android:layout_height="322dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

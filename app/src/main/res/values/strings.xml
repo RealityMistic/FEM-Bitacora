@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">fem_cesargayo_bitacora</string>
+    <string name="signed_in">Signed in!</string>
+    <string name="signed_cancelled">Signed in cancelled</string>
+    <string name="logout_button">Logout</string>
+    <string name="firebase_user_fmt">Firebase User: %s</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+    <string name="account_linking">Account Linking</string>
+    <string name="hint_user_id">User ID</string>
+
+    <string name="create_account">Create Account</string>
+    <string name="send_link">Send Link</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+
+    <string name="passwordless_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="passwordless_title_text">Passwordless Sign In</string>
+    <string name="status_email_not_sent">Send link to your email to get started.</string>
+    <string name="status_email_sent">Link sent, check your email to continue.</string>
+    <string name="status_link_found">Link received, enter email to sign in.</string>
+    <string name="status_logged">Logueado!</string>
+
+    <string name="labelExit">Bye bye, my friend!</string>
+    <string name="labelAbout">About ME</string>
+    <string name="about">Second Android programming assignment for the FEM module of the MiW masters degree of UPM - ETSISI</string>
+    <string name="btnGetApiContent">Get list of books (API)</string>
+</resources>
