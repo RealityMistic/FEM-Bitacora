@@ -3,7 +3,6 @@ package es.upm.miw.fem.fembitacora;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,33 +11,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
+import es.upm.miw.fem.fembitacora.models.BookResult;
+import es.upm.miw.fem.fembitacora.models.Books;
+import es.upm.miw.fem.fembitacora.models.DeliveryItem;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,19 +39,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-   // private FirebaseDatabase mFirebaseDatabase;
-   // private DatabaseReference mBDBooksRef;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mBDBooksRef;
     private BookApiService apiService;
     private static final String API_BASE_URL = "https://api.nytimes.com/";
     final static String LOG_TAG = "MiW - Bitacora: ";
-    private EditText mEmailField;
-    private EditText mPasswordField;
     private static final int RC_SIGN_IN = 2019;
     ArrayAdapter<String> adapterBookList;
     ArrayList<String> arrayBooks = new ArrayList<>();
     ListView lvBookList;
-    private String firebaseUser;
-    int imagesBook [] = {R.drawable.book_icon};
     static String mySelection [][];
     String arrayTitles[];
     String arrayAuthor[];
@@ -90,7 +76,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     CharSequence username = user.getDisplayName();
-                    Toast.makeText(MainActivity.this, "Bienvenido "+user.getDisplayName(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Welcome "+user.getDisplayName(), Toast.LENGTH_LONG).show();
 
                 } else {
                     startActivityForResult(
@@ -120,11 +106,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
         lvBookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                Intent intent = new Intent(MainActivity.this, DetailDeliveryActivity.class);
                 String title=arrayTitles[position].toString();
                 String author=arrayAuthor[position].toString();
                 intent.putExtra("bookTitle",title);
                 intent.putExtra("bookAuthor",author);
+                DeliveryItem deliveryItem = new DeliveryItem(title, author);
+                intent.putExtra("deliveryItem", deliveryItem);
                 startActivity(intent);
             }
         });

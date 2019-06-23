@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/noteEvent"
+        android:orderInCategory="1"
+        android:title="@string/label_note_event"/>
+    <item
+        android:id="@+id/showEvents"
+        android:icon="@drawable/exit_icon"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/label_show_events"/>
+    <item
+        android:id="@+id/updateLocation"
+        android:orderInCategory="3"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/label_update_location"/>
+    <item
+        android:id="@+id/idExit"
+        android:icon="@drawable/exit_icon"
+        android:orderInCategory="4"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/labelExit"/>
+
+</menu>

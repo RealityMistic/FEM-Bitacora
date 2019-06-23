@@ -1,4 +1,4 @@
-package es.upm.miw.fem.fembitacora;
+package es.upm.miw.fem.fembitacora.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
