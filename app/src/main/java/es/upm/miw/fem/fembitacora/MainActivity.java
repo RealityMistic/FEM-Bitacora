@@ -3,6 +3,7 @@ package es.upm.miw.fem.fembitacora;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
    // private FirebaseDatabase mFirebaseDatabase;
    // private DatabaseReference mBDBooksRef;
     private BookApiService apiService;
-    private static final String API_BASE_URL = "http://www.etnassoft.com/api/v1/";
+    private static final String API_BASE_URL = "https://api.nytimes.com/";
     final static String LOG_TAG = "MiW - Bitacora: ";
     private EditText mEmailField;
     private EditText mPasswordField;
@@ -62,7 +71,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Book book;
+        BookResult bookResult;
         mFirebaseAuth = FirebaseAuth.getInstance();
         lvBookList = findViewById(R.id.lvBookList);
 
@@ -126,50 +135,50 @@ public class MainActivity extends Activity implements View.OnClickListener{
    public void onClick(View v) {
        mFirebaseAuth.signOut();
    }
-    public void showBooksApi(View v){
 
+   public void showBooksApi(View v){
 
+        Call<Books> call_async = apiService.getBooks();
 
-        Call<List<Book>> call_async = apiService.getBooks();
+       call_async.enqueue(new Callback<Books>() {
+           @Override
+           public void onResponse(@NonNull Call<Books> call, @NonNull Response<Books> response) {
 
-        call_async.enqueue(new Callback<List<Book>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Book>> call, @NonNull Response<List<Book>> response) {
+               Books books = response.body();
+               Log.i(LOG_TAG, "Response: size: " + books.getBooks().size());
 
-                List<Book> books = response.body();
-
-                int count=0;
-                int rows = books.size();
+               int count=0;
+                int rows = books.getBooks().size();
 
                 arrayTitles=new String[rows];
                 arrayAuthor=new String[rows];
                 mySelection = new String[rows][2];
 
                 if(null != books){
-                    for (Book book : books){
+                    for (BookResult bookResult : books.getBooks()){
                         //Se asigna los campos recuperados de la API al adaptador
-                        adapterBookList.add("Title: "+book.getTitle()+ " Author: "+ book.getAuthor());
-                        arrayTitles[count]= book.getTitle();
-                        arrayAuthor[count]= book.getAuthor();
+                        adapterBookList.add("Title: "+bookResult.getTitle()+ " Author: "+ bookResult.getAuthor());
+                        arrayTitles[count]= bookResult.getTitle();
+                        arrayAuthor[count]= bookResult.getAuthor();
                         count++;
                         //Se visualizan los datos de la API en la consola
-                        Log.i(LOG_TAG, "API: Nombre: " + book.getTitle()+" Modelo: "+book.getAuthor());
+                        Log.i(LOG_TAG, "API: Title: " + bookResult.getTitle()+" Author: "+bookResult.getAuthor());
                     }
 
                 } else
                     Toast.makeText(MainActivity.this, "Empty list!!!", Toast.LENGTH_LONG).show();
             }
 
-            @Override
-            public void onFailure(@NonNull Call<List<Book>> call, @NonNull Throwable t) {
-                Toast.makeText(getApplicationContext(),"API Connection error: " + t.getMessage(), Toast.LENGTH_LONG).show();
-                Log.i(LOG_TAG, "Error "+ t.getMessage());
-            }
+           @Override
+           public void onFailure(Call<Books> call, Throwable t) {
+               Toast.makeText(getApplicationContext(),"API Connection error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+               Log.i(LOG_TAG, "Error ->"+ t.getMessage() + " toString: " + t.toString());
+           }
         });
 
     }
 
-    private void signOut() {
+    private void signOut(View v) {
         mFirebaseAuth.signOut();
     }
 

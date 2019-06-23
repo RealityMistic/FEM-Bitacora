@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Book {
+public class BookResult {
     @SerializedName("title")
     @Expose
     private String title;
@@ -15,20 +15,28 @@ public class Book {
     @SerializedName("publisher")
     @Expose
     private String publisher;
-    @SerializedName("pages")
+    @SerializedName("price")
     @Expose
-    private String pages;
+    private String price;
     @SerializedName("language")
     @Expose
     private String language;
 
-    public Book(String title, String author, String publisher,
-                String pages, String language) {
+
+    public BookResult(String title, String author, String price,
+                String publisher, String language) {
         this.title = title;
         this.author = author;
+        this.price = price;
         this.publisher = publisher;
-        this.pages = pages;
         this.language = language;
+    }
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getTitle() {
@@ -55,13 +63,6 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String getPages() {
-        return pages;
-    }
-
-    public void setPages(String pages) {
-        this.pages = pages;
-    }
     public String getLanguage() {
         return language;
     }

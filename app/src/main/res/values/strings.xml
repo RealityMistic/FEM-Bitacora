@@ -9,10 +9,10 @@
     <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
     <string name="account_linking">Account Linking</string>
     <string name="hint_user_id">User ID</string>
-
+    <string name="label_title">BestSeller book Logbook API</string>
     <string name="create_account">Create Account</string>
     <string name="send_link">Send Link</string>
-    <string name="signed_out">Signed Out</string>
+    <string name="sign_out">Sign Out</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
 

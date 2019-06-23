@@ -21,49 +21,18 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_marginBottom="8dp"
-        android:text="@string/label_emailpassword"
+        android:text="@string/label_title"
         android:textAlignment="center" />
 
-    <Button
-        android:id="@+id/buttonSignIn"
-        android:layout_width="@dimen/field_width_standard"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldEmail"
-        android:layout_alignStart="@+id/titleAnonymous"
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="14dp"
-        android:text="@string/signed_in" />
-
-    <Button
+        <Button
         android:id="@+id/buttonAnonymousSignOut"
         android:layout_width="@dimen/field_width_standard"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonSignIn"
         android:enabled="false"
-        android:text="@string/signed_out"
-        android:layout_toEndOf="@+id/buttonSignIn" />
+        android:text="@string/sign_out"
+        android:onClick="signOut" />
 
-    <EditText
-        android:id="@+id/fieldEmail"
-        android:layout_width="@dimen/field_width_standard"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titleLinking"
-        android:layout_alignStart="@+id/titleAnonymous"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="9dp"
-        android:hint="@string/hint_email"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress" />
-    <TextView
-        android:id="@+id/titleLinking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/statusEmail"
-        android:layout_alignStart="@+id/titleAnonymous"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/account_linking" />
+
     <TextView
         android:id="@+id/statusEmail"
         android:layout_width="wrap_content"
@@ -72,31 +41,12 @@
         android:layout_marginBottom="8dp"
         android:textStyle="bold"
         tools:text="Email: none" />
-    <TextView
-        android:id="@+id/statusId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titleAnonymous"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/signed_out"
-        android:textStyle="bold" />
-    <EditText
-        android:id="@+id/fieldPassword"
-        android:layout_width="@dimen/field_width_standard"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/fieldEmail"
-        android:layout_toEndOf="@+id/fieldEmail"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:importantForAutofill="no" />
+
 
     <Switch
         android:id="@+id/statusSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/statusId"
-        android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:checked="false"
         android:text="@string/status_logged" />
