@@ -48,12 +48,16 @@ public class EventActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String note = notesEditText.getText().toString();
-                mDeliverersReference.child("deliverers").child(currentUserID)
+                Log.i(LOG_TAG, "note for event taken.");
+                mDeliverersReference
+                        .child("deliverers")
+                        .child(currentUserID)
                         .child("delivery")
                         .child(deliveryItem.getId())
-                        .setValue(note);
+                        .child("event")
+                        .push().setValue(note);
 
-                //Toast.makeText(this, "Event created", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Event created", Toast.LENGTH_SHORT).show();
                 Log.i(LOG_TAG, "Event created");
             }
         });
@@ -63,28 +67,5 @@ public class EventActivity extends Activity {
     }
 
 
-
-
-
-    /*
-
-    public void onClickCreateEvent(View view) {
-        Event event = new Event(notesEditText.getText().toString());
-        Log.i(LOG_TAG, "Event activity before INSERT");
-
-        mDeliverersReference
-                .child("deliverers")
-                .child(currentUserID)
-                .child("delivery")
-                .child(deliveryItem.getId())
-                .child("event").push().setValue(event.getNotes());
-        Log.i(LOG_TAG, "Event activity after INSERT");
-
-        Toast.makeText(this, "Event created",
-                Toast.LENGTH_SHORT).show();
-
-        finish();
-    }
-*/
 }
 

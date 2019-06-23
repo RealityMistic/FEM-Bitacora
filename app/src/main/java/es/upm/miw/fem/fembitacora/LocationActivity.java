@@ -54,8 +54,20 @@ public class LocationActivity extends Activity {
 
         deliveryItem.setLocation(newLocation);
         Log.i(LOG_TAG, " ClickUpdateLocation before Firebase call");
-        mDelivererReference.child("deliverer")
+        mDelivererReference
+                .child("deliverers")
                 .child(currentUserID)
+                .child("delivery")
+                .child(deliveryItem.getId())
+                .child("location").removeValue();
+
+        mDelivererReference
+                .child("deliverers")
+                .child(currentUserID)
+                .child("delivery")
+                .child(deliveryItem.getId())
+                .child("location")
+                .push()
                 .setValue(deliveryItem.getLocation());
 
         Toast.makeText(this, "Location correctly updated",

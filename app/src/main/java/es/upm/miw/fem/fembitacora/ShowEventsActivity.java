@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,8 +28,6 @@ public class ShowEventsActivity extends Activity {
 
     private ListView incidenciasListView;
 
-    // IncidenciaAdapter adapter;
-
     private DatabaseReference mDelivererReference;
 
     String currentUserID;
@@ -47,27 +46,39 @@ public class ShowEventsActivity extends Activity {
         currentUserID = intent.getStringExtra("FIREBASE_AUTH_CURRENT_USER");
         // itemTitle = intent.getStringExtra("ITEM_TITLE");
         deliveryItem = (DeliveryItem) intent.getSerializableExtra("deliveryItem");
-        incidenciasListView = findViewById(R.id.eventsListView);
 
         View entryView = getLayoutInflater().inflate(R.layout.event_entry, null);
-        incidenciasListView.addHeaderView(entryView);
 
         mDelivererReference = FirebaseDatabase.getInstance().getReference()
                 .child("deliverers")
                 .child(currentUserID)
                 .child("delivery")
                 .child(deliveryItem.getId())
-                .child("events");
+                .child("event");
 
         mDelivererReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(LOG_TAG, "loadIncidencia:onCancelled", databaseError.toException());
+                // ...
+            }
 
-                @SuppressWarnings("unchecked")
-                Map<String, ?> events = (Map<String, ?>) dataSnapshot.getValue();
-                if (events == null) {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String eventNote = (String) dataSnapshot.getValue().toString();
+                /*
+                HashMap<String, ?> eventMap = dataSnapshot.getValue(HashMap.class);
+                String eventNote = "";
+                for (Map.Entry<String, ?> incidenciaEntry : eventMap.entrySet()) {
+                    if (incidenciaEntry.getValue() instanceof String) {
+                        eventNote += (String) incidenciaEntry.getValue();
+                        eventNote += "\n";
+                    }
+                 */
+                if (eventNote == null) {
                     /* log a warning, DataSnapshot.getValue may return null */
-                    Log.w(LOG_TAG, "DataSnapshot-incidencias.getValue may return null");
+                    Log.w(LOG_TAG, "DataSnapshot-eventNote.getValue may return null");
 
                     Toast.makeText(
                             getApplicationContext(),
@@ -76,40 +87,19 @@ public class ShowEventsActivity extends Activity {
                     ).show();
 
                     return;
-                }
-                ArrayList<Event> eventList = new ArrayList<>();
-
-                for (Map.Entry<String, ?> eventSetEntry : events.entrySet()) {
-
-                    Event event = new Event();
-
-                    Map<String, ?> eventMap = (HashMap<String, ?>) eventSetEntry.getValue();
-                    for (Map.Entry<String, ?> eventEntry : eventMap.entrySet()) {
-                        if (eventSetEntry.getValue() instanceof String) {
-                            event.setNotes((String) eventSetEntry.getValue());
-                        }
-                    }
-                    eventList.add(event);
-
+                } else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Event notes read. ",
+                            Toast.LENGTH_LONG
+                    ).show();
                 }
 
-                eventAdapter = new EventAdapter(
-                        getApplicationContext(),
-                        R.layout.event_list,
-                        eventList);
+                TextView eventNoteTextView = findViewById(R.id.eventNoteTextView);
+                eventNoteTextView.setText(eventNote);
 
-                incidenciasListView.setAdapter(eventAdapter);
-                eventAdapter.notifyDataSetChanged();
 
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(LOG_TAG, "loadIncidencia:onCancelled", databaseError.toException());
-                // ...
             }
         });
-
     }
 }

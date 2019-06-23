@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lvBookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String user = mFirebaseAuth.getCurrentUser().getUid();
                 Intent intent = new Intent(MainActivity.this, DetailDeliveryActivity.class);
                 String title=arrayTitles[position].toString();
                 String author=arrayAuthor[position].toString();
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("bookAuthor",author);
                 intent.putExtra("bookPublisher",publisher);
                 intent.putExtra("bookPrice",price);
+                intent.putExtra("FIREBASE_AUTH_CURRENT_USER", user);
                 DeliveryItem deliveryItem = new DeliveryItem(title, author);
                 intent.putExtra("deliveryItem", deliveryItem);
                 startActivity(intent);

@@ -3,15 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".ShowEventsActivity">
-
-
-    <ListView
-        android:id="@+id/eventsListView"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/eventNoteLabelTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"></ListView>
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_weight="1"
+        android:text="Event note:"
+        android:textFontWeight="16" />
 
+    <TextView
+        android:id="@+id/eventNoteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_weight="1"
+        android:textFontWeight="16"/>
+</LinearLayout>
 
 </LinearLayout>
