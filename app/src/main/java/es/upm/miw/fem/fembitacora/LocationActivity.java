@@ -43,7 +43,7 @@ public class LocationActivity extends Activity {
     private DeliveryItem getSelectedItem() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        return (DeliveryItem) bundle.getSerializable("DELIVERY");
+        return (DeliveryItem) bundle.getSerializable("deliveryItem");
     }
 
     public void onClickUpdateLocation(View view) {

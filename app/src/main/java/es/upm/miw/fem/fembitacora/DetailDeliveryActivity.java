@@ -8,13 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.LocalDateTime;
+
 import es.upm.miw.fem.fembitacora.models.DeliveryItem;
 
-public class DetailDeliveryActivity extends Activity {
+public class DetailDeliveryActivity extends AppCompatActivity {
     DeliveryItem deliveryItem;
     String currentUserID;
     // private DatabaseReference mDeliveryDatabaseReference;
@@ -24,15 +28,31 @@ public class DetailDeliveryActivity extends Activity {
         setContentView(R.layout.activity_detail);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        String title = bundle.getString("bookTitle");
+        String author = bundle.getString("bookAuthor");
+        String publisher = bundle.getString("bookPublisher");
+        String language = bundle.getString("bookLanguage");
+        String pages = bundle.getString("bookPages");
         deliveryItem = (DeliveryItem) getIntent().getSerializableExtra("deliveryItem");
+        deliveryItem.setId(LocalDateTime.now().toString());
        // mDeliveryDatabaseReference = FirebaseDatabase.getInstance().getReference();
         currentUserID = intent.getStringExtra("FIREBASE_AUTH_CURRENT_USER");
 
         TextView titleTextView = findViewById(R.id.titleTextView);
-        titleTextView.setText(deliveryItem.getTitle());
+        titleTextView.setText(title);
 
         TextView authorTextView = findViewById(R.id.authorTextView);
-        titleTextView.setText(deliveryItem.getAuthor());
+        authorTextView.setText(author);
+        TextView languageTextView = findViewById(R.id.languageTextView);
+        languageTextView.setText(language);
+        TextView publisherTextView = findViewById(R.id.publisherTextView);
+        publisherTextView.setText(publisher);
+        TextView pagesTextView = findViewById(R.id.pagesTextView);
+        pagesTextView.setText(pages);
+
+        TextView locationTextView = findViewById(R.id.locationTextView);
+        locationTextView = findViewById(R.id.locationTextView);
+
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -51,13 +71,17 @@ public class DetailDeliveryActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     public void registerEvent() {
-        DialogFragment registerEventDialogFragment = new RegisterEventDialogFragment();
-        registerEventDialogFragment.show(getFragmentManager(), String.valueOf(R.string.register_event));
+        Intent intent = new Intent(this, EventActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("deliveryItem", deliveryItem);
+        intent.putExtras(bundle);
+        intent.putExtra("FIREBASE_AUTH_CURRENT_USER", currentUserID);
+        startActivity(intent);
     }
     public void updateLocation() {
         Intent intent = new Intent(this, LocationActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("DELIVERY", deliveryItem);
+        bundle.putSerializable("deliveryItem", deliveryItem);
         intent.putExtras(bundle);
         intent.putExtra("FIREBASE_AUTH_CURRENT_USER", currentUserID);
         startActivity(intent);
@@ -65,7 +89,7 @@ public class DetailDeliveryActivity extends Activity {
     public void showEvents() {
         Intent intent = new Intent(this, ShowEventsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("DELIVERY", deliveryItem);
+        bundle.putSerializable("deliveryItem", deliveryItem);
         intent.putExtras(bundle);
         intent.putExtra("FIREBASE_AUTH_CURRENT_USER", currentUserID);
         startActivity(intent);

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import es.upm.miw.fem.fembitacora.models.DeliveryItem;
 import es.upm.miw.fem.fembitacora.models.Event;
 
 import static es.upm.miw.fem.fembitacora.MainActivity.LOG_TAG;
@@ -36,22 +37,27 @@ public class ShowEventsActivity extends Activity {
 
     EventAdapter eventAdapter;
 
+    DeliveryItem deliveryItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-
         Intent intent = getIntent();
         currentUserID = intent.getStringExtra("FIREBASE_AUTH_CURRENT_USER");
-        itemTitle = intent.getStringExtra("ITEM_TITLE");
-
+        // itemTitle = intent.getStringExtra("ITEM_TITLE");
+        deliveryItem = (DeliveryItem) intent.getSerializableExtra("deliveryItem");
         incidenciasListView = findViewById(R.id.eventsListView);
 
         View headerView = getLayoutInflater().inflate(R.layout.event_entry, null);
         incidenciasListView.addHeaderView(headerView);
 
         mDelivererReference = FirebaseDatabase.getInstance().getReference()
-                .child("deliverer").child(currentUserID).child("delivery").child(itemTitle).child("events");
+                .child("deliverers")
+                .child(currentUserID)
+                .child("delivery")
+                .child(deliveryItem.getId())
+                .child("events");
 
         mDelivererReference.addValueEventListener(new ValueEventListener() {
             @Override

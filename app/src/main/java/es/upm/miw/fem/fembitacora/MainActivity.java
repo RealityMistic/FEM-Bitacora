@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ToolbarWidgetWrapper;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +37,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -43,7 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private DatabaseReference mBDBooksRef;
     private BookApiService apiService;
     private static final String API_BASE_URL = "https://api.nytimes.com/";
-    final static String LOG_TAG = "MiW - Bitacora: ";
+    final static String LOG_TAG = "MiW-FEM:";
     private static final int RC_SIGN_IN = 2019;
     ArrayAdapter<String> adapterBookList;
     ArrayList<String> arrayBooks = new ArrayList<>();
@@ -51,12 +53,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
     static String mySelection [][];
     String arrayTitles[];
     String arrayAuthor[];
+    String arrayPublisher[];
+    String arrayLanguage[];
+    String arrayPages[];
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         BookResult bookResult;
         mFirebaseAuth = FirebaseAuth.getInstance();
         lvBookList = findViewById(R.id.lvBookList);
@@ -109,8 +115,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 Intent intent = new Intent(MainActivity.this, DetailDeliveryActivity.class);
                 String title=arrayTitles[position].toString();
                 String author=arrayAuthor[position].toString();
+                String publisher=arrayPublisher[position].toString();
+                String language=arrayLanguage[position].toString();
+                String pages=arrayPages[position].toString();
                 intent.putExtra("bookTitle",title);
                 intent.putExtra("bookAuthor",author);
+                intent.putExtra("bookPublisher",author);
+                intent.putExtra("bookLanguage",author);
+                intent.putExtra("bookPages",author);
                 DeliveryItem deliveryItem = new DeliveryItem(title, author);
                 intent.putExtra("deliveryItem", deliveryItem);
                 startActivity(intent);
@@ -144,12 +156,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
                 if(null != books){
                     for (BookResult bookResult : books.getBooks()){
-                        //Se asigna los campos recuperados de la API al adaptador
                         adapterBookList.add("Title: "+bookResult.getTitle()+ " Author: "+ bookResult.getAuthor());
                         arrayTitles[count]= bookResult.getTitle();
                         arrayAuthor[count]= bookResult.getAuthor();
                         count++;
-                        //Se visualizan los datos de la API en la consola
                         Log.i(LOG_TAG, "API: Title: " + bookResult.getTitle()+" Author: "+bookResult.getAuthor());
                     }
 

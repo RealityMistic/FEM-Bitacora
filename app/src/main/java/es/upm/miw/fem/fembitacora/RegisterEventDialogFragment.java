@@ -9,9 +9,9 @@ import android.os.Bundle;
 public class RegisterEventDialogFragment extends DialogFragment {
 
    public Dialog onCreateDialog(Bundle savedInstanceState){
-        final DetailDeliveryActivity activity = (DetailDeliveryActivity) getActivity();
+        final DetailDeliveryActivity detailDeliveryActivity = (DetailDeliveryActivity) getActivity();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(detailDeliveryActivity);
         builder
                 .setTitle(R.string.dialog_text_reg_event_title)
                 .setMessage(R.string.dialog_text_reg_event_question)
@@ -20,7 +20,7 @@ public class RegisterEventDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                activity.registerEvent();
+                                detailDeliveryActivity.registerEvent();
                             }
                         }
                 ).setNegativeButton(

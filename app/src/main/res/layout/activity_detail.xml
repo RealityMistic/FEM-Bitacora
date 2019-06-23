@@ -1,52 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:context=".DetailDeliveryActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        />
     <LinearLayout
         android:id="@+id/linearLayoutRow1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/titleLabelTextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
             android:text="Title:"
-            android:textFontWeight="12" />
+            android:textFontWeight="16" />
 
         <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_weight="1" />
-    </LinearLayout>
+            android:layout_weight="1"
+            android:textFontWeight="16"/>
 
-    <LinearLayout
-        android:id="@+id/linearLayoutRow2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/authorLabelTextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
             android:text="Author: "
-            android:textFontWeight="12" />
+            android:textFontWeight="16" />
 
         <TextView
             android:id="@+id/authorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:textFontWeight="16"/>
+        <TextView
+            android:id="@+id/publisherLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Publisher: "
+            android:textFontWeight="16" />
+
+        <TextView
+            android:id="@+id/publisherTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:textFontWeight="16"/>
+        <TextView
+            android:id="@+id/languageLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Language: "
+            android:textFontWeight="16" />
+
+        <TextView
+            android:id="@+id/languageTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textFontWeight="16"/>
+        <TextView
+            android:id="@+id/pagesLabelTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Pages: "
+            android:textFontWeight="16" />
+
+        <TextView
+            android:id="@+id/pagesTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:textFontWeight="16"/>
+
+        <TextView
+            android:id="@+id/locationLabelTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Location to deliver:"
+            android:textFontWeight="16" />
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:textFontWeight="16"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -18,19 +18,32 @@ public class DeliveryItem implements Serializable {
 
     public String location;
 
+    public String id;
+
     public boolean done = Boolean.FALSE;
 
     public DeliveryItem(String title, String author) {
+        this.id = id;
         this.title = title;
         this.author = author;
+
     }
 
-    public DeliveryItem(String title, String address, ArrayList<Event> events, String location, boolean done) {
+    public DeliveryItem(String id, String title, String address, ArrayList<Event> events, String location, boolean done) {
+        this.id = id;
         this.title = title;
         this.address = address;
         this.events = events;
         this.location = location;
         this.done = done;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {

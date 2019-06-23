@@ -5,12 +5,13 @@
         android:id="@+id/idAbout"
         android:icon="@drawable/about_icon"
         android:orderInCategory="1"
+        android:showAsAction="always"
         android:title="@string/labelAbout"/>
     <item
         android:id="@+id/idExit"
         android:icon="@drawable/exit_icon"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="always"
         android:title="@string/labelExit"/>
 
 </menu>
