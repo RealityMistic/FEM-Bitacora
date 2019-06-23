@@ -31,8 +31,7 @@ public class DetailDeliveryActivity extends AppCompatActivity {
         String title = bundle.getString("bookTitle");
         String author = bundle.getString("bookAuthor");
         String publisher = bundle.getString("bookPublisher");
-        String language = bundle.getString("bookLanguage");
-        String pages = bundle.getString("bookPages");
+        String price = bundle.getString("bookPrice");
         deliveryItem = (DeliveryItem) getIntent().getSerializableExtra("deliveryItem");
         deliveryItem.setId(LocalDateTime.now().toString());
        // mDeliveryDatabaseReference = FirebaseDatabase.getInstance().getReference();
@@ -43,12 +42,10 @@ public class DetailDeliveryActivity extends AppCompatActivity {
 
         TextView authorTextView = findViewById(R.id.authorTextView);
         authorTextView.setText(author);
-        TextView languageTextView = findViewById(R.id.languageTextView);
-        languageTextView.setText(language);
         TextView publisherTextView = findViewById(R.id.publisherTextView);
         publisherTextView.setText(publisher);
-        TextView pagesTextView = findViewById(R.id.pagesTextView);
-        pagesTextView.setText(pages);
+        TextView priceTextView = findViewById(R.id.priceTextView);
+        priceTextView.setText(price);
 
         TextView locationTextView = findViewById(R.id.locationTextView);
         locationTextView = findViewById(R.id.locationTextView);

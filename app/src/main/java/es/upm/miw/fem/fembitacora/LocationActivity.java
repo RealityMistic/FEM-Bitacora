@@ -3,6 +3,7 @@ package es.upm.miw.fem.fembitacora;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import es.upm.miw.fem.fembitacora.models.DeliveryItem;
+
+import static es.upm.miw.fem.fembitacora.MainActivity.LOG_TAG;
 
 
 public class LocationActivity extends Activity {
@@ -47,12 +50,13 @@ public class LocationActivity extends Activity {
     }
 
     public void onClickUpdateLocation(View view) {
-        String newLoc = locationEditText.getText().toString();
-        StringBuffer locationBf = new StringBuffer(deliveryItem.getLocation()).append(", ").append(newLoc);
+        String newLocation = locationEditText.getText().toString();
 
-        deliveryItem.setLocation(locationBf.toString());
-
-        mDelivererReference.child("deliverer").child(currentUserID).child("delivery").child(deliveryItem.getTitle()).setValue(deliveryItem);
+        deliveryItem.setLocation(newLocation);
+        Log.i(LOG_TAG, " ClickUpdateLocation before Firebase call");
+        mDelivererReference.child("deliverer")
+                .child(currentUserID)
+                .setValue(deliveryItem.getLocation());
 
         Toast.makeText(this, "Location correctly updated",
                 Toast.LENGTH_SHORT).show();

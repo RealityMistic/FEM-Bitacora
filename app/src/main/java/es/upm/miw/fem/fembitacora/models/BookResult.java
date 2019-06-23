@@ -18,18 +18,14 @@ public class BookResult {
     @SerializedName("price")
     @Expose
     private String price;
-    @SerializedName("language")
-    @Expose
-    private String language;
 
 
     public BookResult(String title, String author, String price,
-                String publisher, String language) {
+                String publisher) {
         this.title = title;
         this.author = author;
         this.price = price;
         this.publisher = publisher;
-        this.language = language;
     }
     public String getPrice() {
         return price;
@@ -61,14 +57,6 @@ public class BookResult {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
     }
 
 

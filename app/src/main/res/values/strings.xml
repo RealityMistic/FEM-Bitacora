@@ -36,6 +36,7 @@
     <string name="event_create_button">event_create_button</string>
     <string name="labelExit">Bye bye, my friend!</string>
     <string name="set_event">Set Event</string>
+    <string name="set_location">Set location</string>
     <string name="labelAbout">About</string>
     <string name="about">Second Android programming assignment for the FEM module of the MiW masters degree of UPM - ETSISI</string>
     <string name="btnGetApiContent">Get list of books (API)</string>

@@ -49,8 +49,8 @@ public class ShowEventsActivity extends Activity {
         deliveryItem = (DeliveryItem) intent.getSerializableExtra("deliveryItem");
         incidenciasListView = findViewById(R.id.eventsListView);
 
-        View headerView = getLayoutInflater().inflate(R.layout.event_entry, null);
-        incidenciasListView.addHeaderView(headerView);
+        View entryView = getLayoutInflater().inflate(R.layout.event_entry, null);
+        incidenciasListView.addHeaderView(entryView);
 
         mDelivererReference = FirebaseDatabase.getInstance().getReference()
                 .child("deliverers")

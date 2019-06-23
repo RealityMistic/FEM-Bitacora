@@ -53,12 +53,13 @@ public class EventActivity extends Activity {
                         .child(deliveryItem.getId())
                         .setValue(note);
 
+                //Toast.makeText(this, "Event created", Toast.LENGTH_SHORT).show();
+                Log.i(LOG_TAG, "Event created");
             }
         });
-        Toast.makeText(this, "Event created",
-                Toast.LENGTH_SHORT).show();
 
-        finish();
+
+       // finish();
     }
 
 

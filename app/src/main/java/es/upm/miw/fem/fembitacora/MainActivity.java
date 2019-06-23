@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String arrayTitles[];
     String arrayAuthor[];
     String arrayPublisher[];
-    String arrayLanguage[];
-    String arrayPages[];
+    String arrayPrice[];
 
 
     @Override
@@ -116,13 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String title=arrayTitles[position].toString();
                 String author=arrayAuthor[position].toString();
                 String publisher=arrayPublisher[position].toString();
-                String language=arrayLanguage[position].toString();
-                String pages=arrayPages[position].toString();
+                String price=arrayPrice[position].toString();
                 intent.putExtra("bookTitle",title);
                 intent.putExtra("bookAuthor",author);
-                intent.putExtra("bookPublisher",author);
-                intent.putExtra("bookLanguage",author);
-                intent.putExtra("bookPages",author);
+                intent.putExtra("bookPublisher",publisher);
+                intent.putExtra("bookPrice",price);
                 DeliveryItem deliveryItem = new DeliveryItem(title, author);
                 intent.putExtra("deliveryItem", deliveryItem);
                 startActivity(intent);
@@ -152,6 +149,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 arrayTitles=new String[rows];
                 arrayAuthor=new String[rows];
+                arrayPublisher=new String[rows];
+                arrayPrice=new String[rows];
+
                 mySelection = new String[rows][2];
 
                 if(null != books){
@@ -159,6 +159,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         adapterBookList.add("Title: "+bookResult.getTitle()+ " Author: "+ bookResult.getAuthor());
                         arrayTitles[count]= bookResult.getTitle();
                         arrayAuthor[count]= bookResult.getAuthor();
+                        arrayPublisher[count] = bookResult.getPublisher();
+                        arrayPrice[count] = bookResult.getPrice();
                         count++;
                         Log.i(LOG_TAG, "API: Title: " + bookResult.getTitle()+" Author: "+bookResult.getAuthor());
                     }

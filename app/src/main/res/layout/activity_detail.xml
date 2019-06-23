@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/titleLabelTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/authorLabelTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
@@ -46,14 +46,14 @@
 
         <TextView
             android:id="@+id/authorTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
             android:textFontWeight="16"/>
         <TextView
             android:id="@+id/publisherLabelTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
@@ -62,30 +62,15 @@
 
         <TextView
             android:id="@+id/publisherTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
             android:textFontWeight="16"/>
-        <TextView
-            android:id="@+id/languageLabelTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="1"
-            android:text="Language: "
-            android:textFontWeight="16" />
 
         <TextView
-            android:id="@+id/languageTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:textFontWeight="16"/>
-        <TextView
-            android:id="@+id/pagesLabelTextView"
-            android:layout_width="0dp"
+            android:id="@+id/priceLabelTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
@@ -93,8 +78,8 @@
             android:textFontWeight="16" />
 
         <TextView
-            android:id="@+id/pagesTextView"
-            android:layout_width="0dp"
+            android:id="@+id/priceTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
@@ -102,7 +87,7 @@
 
         <TextView
             android:id="@+id/locationLabelTextView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
@@ -111,7 +96,7 @@
 
         <TextView
             android:id="@+id/locationTextView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
