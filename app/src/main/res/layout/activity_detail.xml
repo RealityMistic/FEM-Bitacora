@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
-            android:text="Pages: "
+            android:text="Price: "
             android:textFontWeight="16" />
 
         <TextView
@@ -96,6 +96,22 @@
 
         <TextView
             android:id="@+id/locationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:textFontWeight="16"/>
+        <TextView
+            android:id="@+id/deliveryDateLabelTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Delivery date: "
+            android:textFontWeight="16" />
+
+        <TextView
+            android:id="@+id/deliveryDateTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"

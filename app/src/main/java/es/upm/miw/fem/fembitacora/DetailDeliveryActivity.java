@@ -1,7 +1,5 @@
 package es.upm.miw.fem.fembitacora;
 
-import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 import es.upm.miw.fem.fembitacora.models.DeliveryItem;
 
@@ -29,12 +29,15 @@ import static es.upm.miw.fem.fembitacora.MainActivity.LOG_TAG;
 public class DetailDeliveryActivity extends AppCompatActivity {
     DeliveryItem deliveryItem;
     String currentUserID;
-    private DatabaseReference mDelivererReference;
-    // private DatabaseReference mDeliveryDatabaseReference;
+    private DatabaseReference mDelivererReference = FirebaseDatabase.getInstance().getReference();
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        LocalDateTime deliveryDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDeliveryDate = deliveryDate.format(formatter);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String title = bundle.getString("bookTitle");
@@ -43,9 +46,9 @@ public class DetailDeliveryActivity extends AppCompatActivity {
         String price = bundle.getString("bookPrice");
         deliveryItem = (DeliveryItem) getIntent().getSerializableExtra("deliveryItem");
         deliveryItem.setId(md5(deliveryItem.getTitle() + deliveryItem.getAuthor()));
+        deliveryItem.setDeliveryDate(formatDeliveryDate);
 
         Log.i(LOG_TAG, " !!!DATA book md5: " + deliveryItem.getId());
-        // mDeliveryDatabaseReference = FirebaseDatabase.getInstance().getReference();
         currentUserID = intent.getStringExtra("FIREBASE_AUTH_CURRENT_USER");
         Log.i(LOG_TAG, " !!!DATA user: " + currentUserID);
         TextView titleTextView = findViewById(R.id.titleTextView);
@@ -57,6 +60,8 @@ public class DetailDeliveryActivity extends AppCompatActivity {
         publisherTextView.setText(publisher);
         TextView priceTextView = findViewById(R.id.priceTextView);
         priceTextView.setText(price);
+        TextView deliveryDateTextView = findViewById(R.id.deliveryDateTextView);
+        deliveryDateTextView.setText(formatDeliveryDate);
 
         mDelivererReference = FirebaseDatabase.getInstance().getReference()
                 .child("deliverers")
@@ -75,13 +80,35 @@ public class DetailDeliveryActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (null != dataSnapshot.getValue()){
-                    deliveryItem.setLocation(dataSnapshot.getValue().toString());
+                HashMap<String, String> result = (HashMap<String, String>) dataSnapshot.getValue();
+                if (null != dataSnapshot.getValue()) {
+                    deliveryItem.setLocation(result.values().iterator().next());
                 }
                 TextView locationTextView = findViewById(R.id.locationTextView);
                 locationTextView.setText(deliveryItem.getLocation());
             }
         });
+
+        mDelivererReference = FirebaseDatabase.getInstance().getReference();
+        mDelivererReference
+                .child("deliverers")
+                .child(currentUserID)
+                .child("delivery")
+                .child(deliveryItem.getId())
+                .child("date").removeValue();
+        mDelivererReference
+                .child("deliverers")
+                .child(currentUserID)
+                .child("delivery")
+                .child(deliveryItem.getId())
+                .child("date")
+                .push()
+                .setValue(deliveryItem.getDeliveryDate());
+
+
+        TextView locationTextView = findViewById(R.id.deliveryDateTextView);
+        locationTextView.setText(deliveryItem.getDeliveryDate());
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

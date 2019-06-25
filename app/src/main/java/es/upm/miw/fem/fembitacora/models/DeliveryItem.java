@@ -22,6 +22,8 @@ public class DeliveryItem implements Serializable {
 
     public boolean done = Boolean.FALSE;
 
+    public String deliveryDate;
+
     public DeliveryItem(String title, String author) {
         this.id = id;
         this.title = title;
@@ -29,14 +31,23 @@ public class DeliveryItem implements Serializable {
 
     }
 
-    public DeliveryItem(String id, String title, String address, ArrayList<Event> events, String location, boolean done) {
+    public DeliveryItem(String id, String title, String address, ArrayList<Event> events, String location, String deliveryDate) {
         this.id = id;
         this.title = title;
         this.address = address;
         this.events = events;
         this.location = location;
-        this.done = done;
+        this.deliveryDate = deliveryDate;
     }
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+
 
     public String getId() {
         return id;

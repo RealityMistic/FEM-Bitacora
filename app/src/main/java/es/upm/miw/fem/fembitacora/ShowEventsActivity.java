@@ -15,12 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import es.upm.miw.fem.fembitacora.models.DeliveryItem;
-import es.upm.miw.fem.fembitacora.models.Event;
 
 import static es.upm.miw.fem.fembitacora.MainActivity.LOG_TAG;
 
@@ -66,7 +63,12 @@ public class ShowEventsActivity extends Activity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String eventNote = (String) dataSnapshot.getValue().toString();
+                String eventNote = "";
+                HashMap<String,String> result = (HashMap<String,String>) dataSnapshot.getValue();
+                for(HashMap.Entry<String, String> entry: result.entrySet()) {
+                    eventNote += entry.getValue() + "\n";
+                }
+              //  String eventNote = (String) result.values().iterator().next;
                 /*
                 HashMap<String, ?> eventMap = dataSnapshot.getValue(HashMap.class);
                 String eventNote = "";

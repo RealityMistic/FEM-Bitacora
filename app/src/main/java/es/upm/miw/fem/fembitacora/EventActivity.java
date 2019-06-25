@@ -59,11 +59,12 @@ public class EventActivity extends Activity {
 
                 Toast.makeText(getApplicationContext(), "Event created", Toast.LENGTH_SHORT).show();
                 Log.i(LOG_TAG, "Event created");
+
+                finish();
             }
         });
 
 
-       // finish();
     }
 
 
