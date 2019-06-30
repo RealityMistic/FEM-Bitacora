@@ -65,8 +65,10 @@ public class ShowEventsActivity extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String eventNote = "";
                 HashMap<String,String> result = (HashMap<String,String>) dataSnapshot.getValue();
-                for(HashMap.Entry<String, String> entry: result.entrySet()) {
-                    eventNote += entry.getValue() + "\n";
+                if (null != dataSnapshot.getValue()){
+                    for(HashMap.Entry<String, String> entry: result.entrySet()) {
+                        eventNote += entry.getValue() + "\n";
+                    }
                 }
               //  String eventNote = (String) result.values().iterator().next;
                 /*
